@@ -23,8 +23,32 @@ Particle.prototype.draw = function(){
 }
 
 
-const particle1 = new Particle(100,100,1,1,20,'white');
-particle1.draw();
+Particle.prototype.update = function(){
+    if(this.x + this.y > canvas.width || this.x - this.size < 0){
+        this.directionX = -this.directionX;
+    }
+
+    if (this.y + this.size > canvas.height || this.y-this.size < 0){
+        this.directionY = -this.directionY;
+    }
+    this.draw();
+}
+
+function init() {
+    particleArray = [];
+    for (let i=0; i< 100; i++){
+        let size = Math.random()*20;
+        let x = Math.random() * (innerWidth - size*2);
+        let y = Math.random() * (innerHeight - size*2);
+        let directionX = (Math.random() * .4) - 0.2;
+        let directionY = (Math.random() * .4) - 0.2;
+
+        particleArray.push(new Particle(x,y,directionX,directionY,size,color));
+
+    }
+}
+
+
 
 
 
