@@ -2,6 +2,7 @@
     margin:0;
     padding:0;
     box-sizing: border-box;
+    font-family: 'Raleway', sans-serif;
 }
 
 #canvas1 {
@@ -12,9 +13,3 @@
     z-index: -1;
 }
 
-button{
-    position: absolute;
-    left: 0px;
-    top: 0px;
-    z-index: 1;
-}
