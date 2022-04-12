@@ -31,6 +31,8 @@ Particle.prototype.update = function(){
     if (this.y + this.size > canvas.height || this.y-this.size < 0){
         this.directionY = -this.directionY;
     }
+    this.x += this.directionX;
+    this.y += this.directionY;
     this.draw();
 }
 
@@ -42,13 +44,30 @@ function init() {
         let y = Math.random() * (innerHeight - size*2);
         let directionX = (Math.random() * .4) - 0.2;
         let directionY = (Math.random() * .4) - 0.2;
-
+        let color = 'white';
         particleArray.push(new Particle(x,y,directionX,directionY,size,color));
 
     }
 }
 
+function animate() {
+    requestAnimationFrame(animate);
+    ctx.clearRect(0,0,innerWidth,innerHeight);
+
+
+    for (let i=0; i<particleArray.length; i++){
+        particleArray[i].update();
+    }
+
+
+}
+init();
+animate();
 
 
 
-
+window.addEventListener('resize', function(){
+    canvas.width = this.innerWidth;
+    canvas.height = this.innerHeight;
+    init();
+})
